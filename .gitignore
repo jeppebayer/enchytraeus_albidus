@@ -1,3 +1,4 @@
 steps/
 logs/
 data/
+__pycache__/
