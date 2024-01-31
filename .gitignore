@@ -2,3 +2,4 @@ steps/
 logs/
 data/
 __pycache__/
+.gwf/
