@@ -1,0 +1,69 @@
+# The name of the relevant project account.
+account: EcoGenetics
+# Name of species being analyzed
+species_name: Enchytraeus albidus
+# List of paths to all BAM files.
+sample_list:
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/A-4/A-4_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/Å-6/Å-6_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/AA-16/AA-16_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/Æ-12/Æ-12_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/B-9/B-9_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/CC-18/CC-18_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/D-23/D-23_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/E-13/E-13_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/EE-20/EE-20_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/G-19/G-19_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/I-7/I-7_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/K-2/K-2_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/O-10/O-10_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/Ø-11/Ø-11_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/P-3/P-3_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/Q-14/Q-14_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/R-22/R-22_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/S-24/S-24_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/T-21/T-21_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/U-8/U-8_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/V-15/V-15_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/X-1/X-1_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/Y-5/Y-5_filtered.bam
+- /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/Z-17/Z-17_filtered.bam
+# Path to reference genome.
+reference_genome_path: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/data/8k_q20/hifiasm/purge_dups/02/purged.fa
+# Directory for intermediary files.
+working_directory_path: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps
+# Directory for final output files.
+output_directory_path: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus
+# Include all sites (1) or only polymorphic sites (0).(0 | 1)
+all_sites: 1
+# If you want to create multiple different VCF files created with different settings, list the different values in matching order for each variable
+# Maximum coverage cutoff value. The maximum coverage percentile to be computed. (If several different thresholds, list must be sorted)
+max_cov:
+- 0.98
+- 0.98
+- 0.98
+# Sample-wise minimum coverage.
+min_cov: 
+- 2
+- 2
+- 2
+# Minimum alternative allele count across all populations pooled.
+min_count:
+- 2
+- 5
+- 10
+# Minimum alternative allele frequency across all populations pooled.
+min_freq:
+- 0
+- 0
+- 0
+# Maximum allowed fraction of samples not fullfilling all parameters.
+miss_frac:
+- 0.001
+- 0.001
+- 0.001
+# Minimum base quality for every nucleotide.
+bq:
+- 15
+- 15
+- 15
