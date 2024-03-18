@@ -1,0 +1,61 @@
+# Tag identifying file association.
+TAG: jeppebayer:EcoGenetics,enchytraeus_albidus,draft_assembly:workflowconfiguration
+# The name of the relevant project account.
+account: EcoGenetics
+# Name of species being analyzed
+species_name: Enchytraeus albidus
+# Directory for final output files.
+output_directory_path: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps
+setup_list:
+  -
+    # Name of run.
+    name: 8k_q20
+    # Path to PacBio sequence file.
+    pacbio_hifi_sequence_file: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/data/8k_q20/filter/8k_q20.fastq.gz
+    # Use Hi-C data during assembly? (1 = Yes/2 = No/3 = Both).
+    use_hic_data: 2
+    # List of Hi-C sequence files if avalable (optional).
+    hic_sequence_files:
+    # Name of BUSCO lineage dataset to use for analysis.
+    busco_dataset_name: metazoa_odb10
+    # Number of purge_dups rounds.
+    purge_dups_rounds: 4
+  -
+    # Name of run.
+    name: 8k_q20_l0
+    # Path to PacBio sequence file.
+    pacbio_hifi_sequence_file: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/data/8k_q20_l0/filter/8k_q20_l0.fastq.gz
+    # Name of BUSCO lineage dataset to use for analysis.
+    busco_dataset_name: metazoa_odb10
+    # Number of purge_dups rounds.
+    purge_dups_rounds: 4
+    # Use Hi-C data during assembly? (1 = Yes/2 = No/3 = Both).
+    use_hic_data: 2
+    # List of Hi-C sequence files if avalable (optional).
+    hic_sequence_files:
+  -
+    # Name of run.
+    name: 8k_q30
+    # Path to PacBio sequence file.
+    pacbio_hifi_sequence_file: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/data/8k_q30/filter/8k_q30.fastq.gz
+    # Name of BUSCO lineage dataset to use for analysis.
+    busco_dataset_name: metazoa_odb10
+    # Number of purge_dups rounds.
+    purge_dups_rounds: 4
+    # Use Hi-C data during assembly? (1 = Yes/2 = No/3 = Both).
+    use_hic_data: 2
+    # List of Hi-C sequence files if avalable (optional).
+    hic_sequence_files:
+  -
+    # Name of run.
+    name: 8k_q30_l0
+    # Path to PacBio sequence file.
+    pacbio_hifi_sequence_file: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/data/8k_q30_l0/filter/8k_q30_l0.fastq.gz
+    # Name of BUSCO lineage dataset to use for analysis.
+    busco_dataset_name: metazoa_odb10
+    # Number of purge_dups rounds.
+    purge_dups_rounds: 4
+    # Use Hi-C data during assembly? (1 = Yes/2 = No/3 = Both).
+    use_hic_data: 2
+    # List of Hi-C sequence files if avalable (optional).
+    hic_sequence_files:

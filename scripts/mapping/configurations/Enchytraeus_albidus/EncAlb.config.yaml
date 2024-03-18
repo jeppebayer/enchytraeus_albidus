@@ -1,0 +1,49 @@
+# Tag identifying file association.
+TAG: jeppebayer:EcoGenetics,enchytraeus_albidus,mapping:workflowconfiguration
+# The name of the relevant project account.
+account: EcoGenetics
+# Name of species being analyzed
+species_name: Enchytraeus albidus
+# Path to reference genome file in FASTA format
+reference_genome_path: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/data/reference/EncAlb_18032024_genomic.fasta
+# Directory for intermediary files.
+working_directory_path: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps
+# Directory for final output files. (If left empty, output file will be placed within 'working_directory_path')
+output_directory_path: 
+# AdapterRemoval settings.
+adapterremoval_settings:
+  min_quality: 25
+  min_length: 20
+  adaptersequence1: AAGTCGGAGGCCAAGCGGTCTTAGGAAGACAA
+  adaptersequence2: AAGTCGGATCGTAGCCATGTCGTTCTGTGAGCCAAGGAGTTG
+# Samtools filter settings.
+filter_settings:
+  flags_excluded: 3844
+  flags_required: 
+  min_mq: 20
+# List of path to sample folders containing resequencing data.
+sample_folder_list:
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/A-4
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/aa-6
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/AA-16
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/ae-12
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/B-9
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/CC-18
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/D-23
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/E-13
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/EE-20
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/G-19
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/I-7
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/K-2
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/O-10
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/oe-11
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/P-3
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/Q-14
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/R-22
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/S-24
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/T-21
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/U-8
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/V-15
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/X-1
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/Y-5
+  - /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/Z-17
