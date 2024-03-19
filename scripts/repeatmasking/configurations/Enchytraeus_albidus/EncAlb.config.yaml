@@ -1,12 +1,14 @@
+# Tag identifying file association.
+TAG: jeppebayer:EcoGenetics,enchytraeus_albidus,repeatmasking:workflowconfiguration
 # The name of the relevant project account.
 account: EcoGenetics
 # Name of species being analyzed
-species_name: Orchesella villosa
+species_name: Enchytraeus albidus
 # Genome assembly files to be masked
-genome_assembly: /faststorage/project/EcoGenetics/BACKUP/reference_genomes/Orchesella_villosa/EG_OrcVil_09012024_genomic_nomask_noann.fasta
+genome_assembly: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/data/reference/EncAlb_19032024_genomic.fasta
 # Repetitive region database file:
 repeat_database: /faststorage/project/EcoGenetics/BACKUP/database/giri_repbase/RepBaseCustom15.02.fasta/Arthropoda.rep
 # Directory for intermediary files.
-working_directory_path: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/genome_assembly_and_annotation/steps/collembola
+working_directory_path: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps
 # Directory for final output files.
 output_directory_path: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/genome_assembly_and_annotation/steps/collembola

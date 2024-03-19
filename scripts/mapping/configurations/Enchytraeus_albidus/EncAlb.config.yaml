@@ -5,7 +5,7 @@ account: EcoGenetics
 # Name of species being analyzed
 species_name: Enchytraeus albidus
 # Path to reference genome file in FASTA format
-reference_genome_path: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/data/reference/EncAlb_18032024_genomic.fasta
+reference_genome_path: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/data/reference/EncAlb_19032024_genomic.fasta
 # Directory for intermediary files.
 working_directory_path: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps
 # Directory for final output files. (If left empty, output file will be placed within 'working_directory_path')
