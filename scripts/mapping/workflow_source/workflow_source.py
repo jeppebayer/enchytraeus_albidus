@@ -41,8 +41,6 @@ def mapping_resequencing_data_population_genetics_workflow(config_file: str = gl
 	)
 	
 	top_dir = f'{WORK_DIR}/{SPECIES_NAME.replace(" ", "_")}/mapping'
-	if not OUTPUT_DIR:
-		OUTPUT_DIR = top_dir
 	
 	index = gwf.target_from_template(
 		name=f'{SPECIES_NAME.replace(" ", "_")}_index_reference',
@@ -113,7 +111,7 @@ def mapping_resequencing_data_population_genetics_workflow(config_file: str = gl
 			template=extract_unmapped_reads(
 				alignment_file=mark_duplicates.outputs['markdup'],
 				sample_name=sample['sample_name'],
-				output_directory=f'{OUTPUT_DIR}'
+				output_directory=f'{OUTPUT_DIR}' if OUTPUT_DIR else f'{top_dir}/unmapped'
 			)
 		)
 
@@ -121,7 +119,7 @@ def mapping_resequencing_data_population_genetics_workflow(config_file: str = gl
 			name=f'{sample["sample_name"].replace("-", "_")}_pre_filter_stats',
 			template=samtools_stats(
 				alignment_file=mark_duplicates.outputs['markdup'],
-				output_directory=f'{top_dir}/alignment/pre_filtering_stats/{sample["sample_name"]}'
+				output_directory=f'{top_dir}/pre_filtering_stats/{sample["sample_name"]}'
 			)
 		)
 
@@ -130,7 +128,7 @@ def mapping_resequencing_data_population_genetics_workflow(config_file: str = gl
 			template=samtools_filter(
 				alignment_file=mark_duplicates.outputs['markdup'],
 				sample_name=sample['sample_name'],
-				output_directory=f'{OUTPUT_DIR}',
+				output_directory=f'{OUTPUT_DIR}' if OUTPUT_DIR else f'{top_dir}/filtered_alignment',
 				flags_excluded=STF_EXCLUDE,
 				flags_required=STF_REQUIRED,
 				min_mq=STF_MIN_MQ
@@ -141,7 +139,7 @@ def mapping_resequencing_data_population_genetics_workflow(config_file: str = gl
 			name=f'{sample["sample_name"].replace("-", "_")}_post_filter_stats',
 			template=samtools_stats(
 				alignment_file=filter_alignment.outputs['filtered'],
-				output_directory=f'{top_dir}/alignment/post_filtering_stats/{sample["sample_name"]}'
+				output_directory=f'{top_dir}/post_filtering_stats/{sample["sample_name"]}'
 			)
 		)
 
@@ -150,17 +148,17 @@ def mapping_resequencing_data_population_genetics_workflow(config_file: str = gl
 			template=qc_qualimap(
 				alignment_file=filter_alignment.outputs['filtered'],
 				sample_name=sample['sample_name'],
-				output_directory=f'{OUTPUT_DIR}/{sample["sample_name"]}'
+				output_directory=f'{OUTPUT_DIR}/bamqc/individual/{sample["sample_name"]}' if OUTPUT_DIR else f'{top_dir}/bamqc/individual/{sample["sample_name"]}'
 			)
 		)
 
-		within_group_qualimap.append([sample["sample_name"], qualimap.outputs["raw"], sample["sample_name"]])
+		within_group_qualimap.append([sample["sample_name"], os.path.dirname(qualimap.outputs["raw"]), sample["sample_name"]])
 			
 	within_multi_qualimap = gwf.target_from_template(
 		name=f'{species_abbreviation(SPECIES_NAME)}_multi_qualimap',
 		template=qualimap_multi(
 			dataset=within_group_qualimap,
-			output_directory=f'{OUTPUT_DIR}',
+			output_directory=f'{OUTPUT_DIR}/bamqc/all' if OUTPUT_DIR else f'{top_dir}/bamqc/all',
 			filename='allsamples'
 		)
 	)

@@ -376,8 +376,8 @@ def extract_unmapped_reads(alignment_file: str, sample_name: str, output_directo
 	:param
 	"""
 	inputs = {'alignment': alignment_file}
-	outputs = {'unmapped': f'{output_directory}/{sample_name}.unmapped.bam',
-			   'bai': f'{output_directory}/{sample_name}.unmapped.bam.bai'}
+	outputs = {'unmapped': f'{output_directory}/{sample_name}/{sample_name}.unmapped.bam',
+			   'bai': f'{output_directory}/{sample_name}/{sample_name}.unmapped.bam.bai'}
 	protect = [outputs['unmapped'], outputs['bai']]
 	options = {
 		'cores': 18,
@@ -394,21 +394,22 @@ def extract_unmapped_reads(alignment_file: str, sample_name: str, output_directo
 	echo "START: $(date)"
 	echo "JobID: $SLURM_JOBID"
 	
-	[ -d {output_directory} ] || mkdir -p {output_directory}
+	[ -d {output_directory}/{sample_name} ] || mkdir -p {output_directory}/{sample_name}
 	
 	samtools view \
 		--threads {options['cores'] - 1} \
 		--require-flags 4 \
 		--bam \
-		--output {output_directory}/{sample_name}.unmapped.bam
+		--output {output_directory}/{sample_name}/{sample_name}.unmapped.bam \
+		{alignment_file}
 
 	samtools index \
 		--threads {options['cores'] - 1} \
 		-b \
-		{output_directory}/{sample_name}.unmapped.bam \
-		{output_directory}/{sample_name}.unmapped.prog.bam.bai
+		{output_directory}/{sample_name}/{sample_name}.unmapped.bam \
+		{output_directory}/{sample_name}/{sample_name}.unmapped.prog.bam.bai
 		
-	mv {output_directory}/{sample_name}.unmapped.prog.bam.bai {outputs['bai']}
+	mv {output_directory}/{sample_name}/{sample_name}.unmapped.prog.bam.bai {outputs['bai']}
 	
 	echo "END: $(date)"
 	echo "$(jobinfo "$SLURM_JOBID")"
@@ -495,8 +496,8 @@ def samtools_filter(alignment_file: str, sample_name: str, output_directory: str
 	if flags_required:
 		flags.append(f'--require-flags {flags_required}')
 	inputs = {'alignment': alignment_file}
-	outputs = {'filtered': f'{output_directory}/{sample_name}.filtered.bam',
-			   'bai': f'{output_directory}/{sample_name}.filtered.bam.bai'}
+	outputs = {'filtered': f'{output_directory}/{sample_name}/{sample_name}.filtered.bam',
+			   'bai': f'{output_directory}/{sample_name}/{sample_name}.filtered.bam.bai'}
 	options = {
 		'cores': 18,
 		'memory': '60g',
@@ -512,23 +513,23 @@ def samtools_filter(alignment_file: str, sample_name: str, output_directory: str
 	echo "START: $(date)"
 	echo "JobID: $SLURM_JOBID"
 	
-	[ -d {output_directory} ] || mkdir -p {output_directory}
+	[ -d {output_directory}/{sample_name} ] || mkdir -p {output_directory}/{sample_name}
 	
 	samtools view \
 		--threads {options['cores'] - 1} \
 		--bam \
 		--min-MQ {min_mq} \
-		--output {output_directory}/{sample_name}.filtered.bam \
+		--output {output_directory}/{sample_name}/{sample_name}.filtered.bam \
 		{' '.join(flags)} \
 		{alignment_file}
 
 	samtools index \
 		--threads {options['cores'] - 1} \
 		-b \
-		{output_directory}/{sample_name}.filtered.bam \
-		> {output_directory}/{sample_name}.filtered.prog.bam.bai
+		{output_directory}/{sample_name}/{sample_name}.filtered.bam \
+		> {output_directory}/{sample_name}/{sample_name}.filtered.prog.bam.bai
 	
-	mv {output_directory}/{sample_name}.filtered.prog.bam.bai {outputs['bai']}
+	mv {output_directory}/{sample_name}/{sample_name}.filtered.prog.bam.bai {outputs['bai']}
 	
 	echo "END: $(date)"
 	echo "$(jobinfo "$SLURM_JOBID")"
@@ -547,8 +548,8 @@ def qc_qualimap(alignment_file: str, sample_name: str, output_directory: str):
 	:param
 	"""
 	inputs = {'alignment': alignment_file}
-	outputs = {'qualimap': f'{output_directory}/qualimap/{sample_name}.qualimap.pdf',
-			   'raw': f'{output_directory}/qualimap/genome_results.txt'}
+	outputs = {'qualimap': f'{output_directory}/report.pdf',
+			   'raw': f'{output_directory}/genome_results.txt'}
 	options = {
 		'cores': 32,
 		'memory': '300g',
@@ -571,17 +572,21 @@ def qc_qualimap(alignment_file: str, sample_name: str, output_directory: str):
 	qualimap bamqc \
 		-nt {options['cores']} \
 		-bam {alignment_file} \
-		-outdir {output_directory}/qualimap \
+		-outdir {output_directory} \
 		-outformat PDF \
-		-outfile {sample_name}.qualimap.prog.pdf \
+		-outfile report.prog.pdf \
 		--java-mem-size={options['memory']}
 
-	mv {output_directory}/qualimap/{sample_name}.qualimap.prog.pdf {outputs['qualimap']}
+	mv {output_directory}/report.prog.pdf {outputs['qualimap']}
 	
 	echo "END: $(date)"
 	echo "$(jobinfo "$SLURM_JOBID")"
 	"""
 	return AnonymousTarget(inputs=inputs, outputs=outputs, options=options, spec=spec)
+
+# 'qualimap': f'{output_directory}/{sample_name}.qualimap.pdf'
+# -outfile {sample_name}.qualimap.prog.pdf
+# mv {output_directory}/{sample_name}.qualimap.prog.pdf {outputs['qualimap']}
 
 def qualimap_multi(dataset: list, output_directory: str, filename: str):
 	"""
@@ -595,8 +600,8 @@ def qualimap_multi(dataset: list, output_directory: str, filename: str):
 	:param
 	"""
 	dataset_tabular = '\n'.join(['\t'.join(i) for i in dataset])
-	inputs = {'raw': [i[1] for i in dataset]}
-	outputs = {'pdf': f'{output_directory}/multiqualimap/{filename}.multiqualimap.pdf'}
+	inputs = {'raw': [f'{i[1]}/genome_results.txt' for i in dataset]}
+	outputs = {'pdf': f'{output_directory}/{filename}.multiqualimap.pdf'}
 	options = {
 		'cores': 32,
 		'memory': '300g',
@@ -615,14 +620,14 @@ def qualimap_multi(dataset: list, output_directory: str, filename: str):
 	[ -d {output_directory} ] || mkdir -p {output_directory}
 
 	export _JAVA_OPTIONS="-Djava.awt.headless=true -Xmx{options['memory']}"
-
+	
 	qualimap multi-bamqc \
-		-d <(cat "{dataset_tabular}") \
-		-outdir {output_directory}/multiqualimap \
+		-d <(echo -e "{dataset_tabular}") \
+		-outdir {output_directory} \
 		-outfile {filename}.multiqualimap.prog.pdf \
 		-outformat PDF
 	
-	mv {output_directory}/multiqualimap/{filename}.multiqualimap.prog.pdf {outputs['pdf']}
+	mv {output_directory}/{filename}.multiqualimap.prog.pdf {outputs['pdf']}
 	
 	echo "END: $(date)"
 	echo "$(jobinfo "$SLURM_JOBID")"
