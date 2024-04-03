@@ -548,7 +548,8 @@ def qc_qualimap(alignment_file: str, sample_name: str, output_directory: str):
 	:param
 	"""
 	inputs = {'alignment': alignment_file}
-	outputs = {'qualimap': f'{output_directory}/report.pdf',
+	outputs = {'pdf': f'{output_directory}/report.pdf',
+			   'html': f'{output_directory}/qualimapReport.html',
 			   'raw': f'{output_directory}/genome_results.txt'}
 	options = {
 		'cores': 32,
@@ -573,11 +574,11 @@ def qc_qualimap(alignment_file: str, sample_name: str, output_directory: str):
 		-nt {options['cores']} \
 		-bam {alignment_file} \
 		-outdir {output_directory} \
-		-outformat PDF \
+		-outformat PDF:HTML \
 		-outfile report.prog.pdf \
 		--java-mem-size={options['memory']}
 
-	mv {output_directory}/report.prog.pdf {outputs['qualimap']}
+	mv {output_directory}/report.prog.pdf {outputs['pdf']}
 	
 	echo "END: $(date)"
 	echo "$(jobinfo "$SLURM_JOBID")"
@@ -625,7 +626,7 @@ def qualimap_multi(dataset: list, output_directory: str, filename: str):
 		-d <(echo -e "{dataset_tabular}") \
 		-outdir {output_directory} \
 		-outfile {filename}.multiqualimap.prog.pdf \
-		-outformat PDF
+		-outformat PDF:HTML
 	
 	mv {output_directory}/{filename}.multiqualimap.prog.pdf {outputs['pdf']}
 	
