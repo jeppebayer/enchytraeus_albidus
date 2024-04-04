@@ -602,7 +602,8 @@ def qualimap_multi(dataset: list, output_directory: str, filename: str):
 	"""
 	dataset_tabular = '\n'.join(['\t'.join(i) for i in dataset])
 	inputs = {'raw': [f'{i[1]}/genome_results.txt' for i in dataset]}
-	outputs = {'pdf': f'{output_directory}/{filename}.multiqualimap.pdf'}
+	outputs = {'pdf': f'{output_directory}/report.pdf',
+			   'html': f'{output_directory}/qualimapReport.html'}
 	options = {
 		'cores': 32,
 		'memory': '300g',
@@ -625,10 +626,10 @@ def qualimap_multi(dataset: list, output_directory: str, filename: str):
 	qualimap multi-bamqc \
 		-d <(echo -e "{dataset_tabular}") \
 		-outdir {output_directory} \
-		-outfile {filename}.multiqualimap.prog.pdf \
+		-outfile report.prog.pdf \
 		-outformat PDF:HTML
 	
-	mv {output_directory}/{filename}.multiqualimap.prog.pdf {outputs['pdf']}
+	mv {output_directory}/report.prog.pdf {outputs['pdf']}
 	
 	echo "END: $(date)"
 	echo "$(jobinfo "$SLURM_JOBID")"
