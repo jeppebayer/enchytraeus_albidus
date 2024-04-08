@@ -603,7 +603,7 @@ def qualimap_multi(dataset: list, output_directory: str, filename: str):
 	dataset_tabular = '\n'.join(['\t'.join(i) for i in dataset])
 	inputs = {'raw': [f'{i[1]}/genome_results.txt' for i in dataset]}
 	outputs = {'pdf': f'{output_directory}/report.pdf',
-			   'html': f'{output_directory}/qualimapReport.html'}
+			   'html': f'{output_directory}/multisampleBamQcReport.html'}
 	options = {
 		'cores': 32,
 		'memory': '300g',
