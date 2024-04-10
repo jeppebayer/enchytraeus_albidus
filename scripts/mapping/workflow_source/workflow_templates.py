@@ -405,9 +405,9 @@ def extract_unmapped_reads(alignment_file: str, sample_name: str, output_directo
 
 	samtools index \
 		--threads {options['cores'] - 1} \
-		-b \
-		{output_directory}/{sample_name}/{sample_name}.unmapped.bam \
-		{output_directory}/{sample_name}/{sample_name}.unmapped.prog.bam.bai
+		--bai \
+		--output {output_directory}/{sample_name}/{sample_name}.unmapped.prog.bam.bai \
+		{output_directory}/{sample_name}/{sample_name}.unmapped.bam
 		
 	mv {output_directory}/{sample_name}/{sample_name}.unmapped.prog.bam.bai {outputs['bai']}
 	
@@ -525,9 +525,9 @@ def samtools_filter(alignment_file: str, sample_name: str, output_directory: str
 
 	samtools index \
 		--threads {options['cores'] - 1} \
-		-b \
-		{output_directory}/{sample_name}/{sample_name}.filtered.bam \
-		> {output_directory}/{sample_name}/{sample_name}.filtered.prog.bam.bai
+		--bai \
+		--output {output_directory}/{sample_name}/{sample_name}.filtered.prog.bam.bai \
+		{output_directory}/{sample_name}/{sample_name}.filtered.bam
 	
 	mv {output_directory}/{sample_name}/{sample_name}.filtered.prog.bam.bai {outputs['bai']}
 	
