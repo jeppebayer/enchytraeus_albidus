@@ -1,0 +1,60 @@
+# Tag identifying file association.
+TAG: jeppebayer:EcoGenetics,enchytraeus_albidus,vcf:workflowconfiguration
+# The name of the relevant project account.
+account: EcoGenetics
+# Taxonomic group.
+taxonomic_group:
+# Name of species being analyzed.
+species_name: Enchytraeus albidus
+# Path to reference genome.
+reference_genome_path: /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/reference_genome/Enchytraeus_albidus/EncAlb_19032024_genomic.fna
+# Directory for intermediary files.
+working_directory_path: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps
+# Directory for final output files. (If left empty, output file will be placed within 'working_directory_path').
+output_directory_path:
+# Partition size of genome in base pairs.
+partition_size: 100000
+# Freebayes settings.
+freebayes_settings:
+  sample_ploidy: 100
+  best_n_alleles: 3
+  min_alternate_fraction: 0
+  min_alternate_count: 2
+# Filtering depths, limits included.
+filtering:
+  minimum_depth: 300
+  maximum_depth: 600
+# Mode for creating VCF file (1 | 2 | 3 | 4).
+# 1 = Separate VCF files for each sample/BAM file. 2 = One VCF file per sample group. 3 = One VCF containing data for all samples/BAM files. 4 = Both.
+mode: 3
+# Sample setup. List of dictionaries listing the configuration for each sample.
+sample_list:
+  - 
+    # Name of sample group.
+    group_name: EncAlb
+    # List of paths to BAM files.
+    bam_file_list:
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/A-4/A-4.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/AA-16/AA-16.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/aa-6/aa-6.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/ae-12/ae-12.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/B-9/B-9.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/CC-18/CC-18.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/D-23/D-23.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/E-13/E-13.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/EE-20/EE-20.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/G-19/G-19.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/I-7/I-7.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/K-2/K-2.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/O-10/O-10.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/oe-11/oe-11.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/P-3/P-3.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/Q-14/Q-14.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/R-22/R-22.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/S-24/S-24.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/T-21/T-21.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/U-8/U-8.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/V-15/V-15.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/X-1/X-1.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/Y-5/Y-5.filtered.bam
+      - /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps/Enchytraeus_albidus/mapping/filtered_alignment/Z-17/Z-17.filtered.bam
