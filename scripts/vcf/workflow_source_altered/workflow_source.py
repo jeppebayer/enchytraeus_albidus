@@ -398,31 +398,32 @@ def freebayes_population_set_workflow(config_file: str = glob.glob('*config.y*ml
 	# 		)
 	# 	)
 
-	depth = gwf.target_from_template(
-		name=f'depth_distribution',
-		template=depth_distribution(
-			bam_files=full_bam_list,
-			output_directory=top_dir,
-			species_name=SPECIES_NAME
+	if JOBPARTITION == 1:
+		depth = gwf.target_from_template(
+			name=f'depth_distribution',
+			template=depth_distribution(
+				bam_files=full_bam_list,
+				output_directory=top_dir,
+				species_name=SPECIES_NAME
+			)
 		)
-	)
 
-	depth_plot = gwf.target_from_template(
-		name=f'depth_distribution_plot',
-		template=depth_distribution_plot(
-			depth_distribution_file=depth.outputs['depth'],
-			min_coverage_threshold=FILTERING_MINDP
+		depth_plot = gwf.target_from_template(
+			name=f'depth_distribution_plot',
+			template=depth_distribution_plot(
+				depth_distribution_file=depth.outputs['depth'],
+				min_coverage_threshold=FILTERING_MINDP
+			)
 		)
-	)
 
-	depth_threshold = gwf.target_from_template(
-		name=f'depth_threshold_bed',
-		template=shared_sites_within_threshold_bed(
-			depth_distribution_file=depth.outputs['depth'],
-			depth_distribution_tsv=depth_plot.outputs['tsv'],
-			output_directory=top_dir,
-			species_name=SPECIES_NAME
+		depth_threshold = gwf.target_from_template(
+			name=f'depth_threshold_bed',
+			template=shared_sites_within_threshold_bed(
+				depth_distribution_file=depth.outputs['depth'],
+				depth_distribution_tsv=depth_plot.outputs['tsv'],
+				output_directory=top_dir,
+				species_name=SPECIES_NAME
+			)
 		)
-	)
 	
 	return gwf

@@ -506,7 +506,7 @@ def freebayes_partition_group(reference_genome_file: str, bam_files: list, outpu
 			   'index': f'{output_directory}/raw_vcf/{group_name}/tmp/{species_abbreviation(species_name)}_{group_name}.freebayes_n{best_n_alleles}_p{ploidy}_minaltfrc{min_alternate_fraction}_minaltcnt{min_alternate_count}.{num}_{region}.vcf.gz.csi'}
 	options = {
 		'cores': 1,
-		'memory': '150g',
+		'memory': '100g',
 		'walltime': '96:00:00'
 	}
 	spec = f"""
@@ -566,7 +566,7 @@ def freebayes_partition_all(reference_genome_file: str, bam_files: list, output_
 			   'index': f'{output_directory}/raw_vcf/all/tmp/{species_abbreviation(species_name)}.freebayes_n{best_n_alleles}_p{ploidy}_minaltfrc{min_alternate_fraction}_minaltcnt{min_alternate_count}.{num}_{region}.vcf.gz.csi'}
 	options = {
 		'cores': 1,
-		'memory': '150g',
+		'memory': '100g',
 		'walltime': '96:00:00'
 	}
 	spec = f"""

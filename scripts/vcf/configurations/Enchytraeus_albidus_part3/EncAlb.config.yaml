@@ -29,7 +29,7 @@ mode: 3
 # Split total workflow jobs into a number of partitions.
 number_of_splits: 3
 # Partition to run.
-job_partition: 1
+job_partition: 3
 # Sample setup. List of dictionaries listing the configuration for each sample.
 sample_list:
   - 
