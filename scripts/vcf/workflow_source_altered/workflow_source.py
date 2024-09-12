@@ -111,6 +111,8 @@ def freebayes_population_set_workflow(config_file: str = glob.glob('*config.y*ml
 	FREEBAYES_BESTN: int | None = FREEBAYES_SETTINGS['best_n_alleles'] if FREEBAYES_SETTINGS['best_n_alleles'] else 3
 	FREEBAYES_MINALTFRC: float | int | None = FREEBAYES_SETTINGS['min_alternate_fraction'] if FREEBAYES_SETTINGS['min_alternate_fraction'] else 0
 	FREEBAYES_MINALTCNT: int | None = FREEBAYES_SETTINGS['min_alternate_count'] if FREEBAYES_SETTINGS['min_alternate_count'] else 2
+	VCF_MEM: int | None = FREEBAYES_SETTINGS['memory'] if FREEBAYES_SETTINGS['memory'] else 80
+	VCF_TIME: str | None = FREEBAYES_SETTINGS['time'] if FREEBAYES_SETTINGS['time'] else '48:00:00'
 	FILTERING: dict = CONFIG['filtering']
 	FILTERING_MINDP: int | None = FILTERING['minimum_depth'] if FILTERING['minimum_depth'] else 200
 	MODE: int = CONFIG['mode']
@@ -329,7 +331,9 @@ def freebayes_population_set_workflow(config_file: str = glob.glob('*config.y*ml
 				   'ploidy': FREEBAYES_PLOIDY,
 				   'best_n_alleles': FREEBAYES_BESTN,
 				   'min_alternate_fraction': FREEBAYES_MINALTFRC,
-				   'min_alternate_count': FREEBAYES_MINALTCNT}
+				   'min_alternate_count': FREEBAYES_MINALTCNT,
+				   'memory': VCF_MEM,
+				   'time': VCF_TIME}
 		)
 
 	# 	if nsegments <= 1:

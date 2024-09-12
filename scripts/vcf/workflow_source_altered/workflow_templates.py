@@ -549,7 +549,7 @@ def freebayes_partition_group(reference_genome_file: str, bam_files: list, outpu
 def name_freebayes_partition_all(idx: str, target: AnonymousTarget) -> str:
 	return f'freebayes_part_all_{os.path.basename(target.outputs["vcf"]).replace("-", "_").replace("|", "_")}'
 
-def freebayes_partition_all(reference_genome_file: str, bam_files: list, output_directory: str, species_name: str, region: str, num: int, start: int, end: int, ploidy: int = 100, best_n_alleles: int = 3, min_alternate_fraction: float | int = 0, min_alternate_count: int = 2):
+def freebayes_partition_all(reference_genome_file: str, bam_files: list, output_directory: str, species_name: str, region: str, num: int, start: int, end: int, ploidy: int = 100, best_n_alleles: int = 3, min_alternate_fraction: float | int = 0, min_alternate_count: int = 2, memory: int = 100, time: str = '96:00:00'):
 	"""
 	Template: Create VCF file for each partition in a large set of pooled alignments.
 	
@@ -566,8 +566,8 @@ def freebayes_partition_all(reference_genome_file: str, bam_files: list, output_
 			   'index': f'{output_directory}/raw_vcf/all/tmp/{species_abbreviation(species_name)}.freebayes_n{best_n_alleles}_p{ploidy}_minaltfrc{min_alternate_fraction}_minaltcnt{min_alternate_count}.{num}_{region}.vcf.gz.csi'}
 	options = {
 		'cores': 1,
-		'memory': '100g',
-		'walltime': '96:00:00'
+		'memory': f'{memory}g',
+		'walltime': time
 	}
 	spec = f"""
 	# Sources environment
