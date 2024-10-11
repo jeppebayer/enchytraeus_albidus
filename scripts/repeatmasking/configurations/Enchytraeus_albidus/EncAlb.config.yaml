@@ -1,16 +1,22 @@
 # Tag identifying file association.
-TAG: jeppebayer:EcoGenetics,enchytraeus_albidus,repeatmasking:workflowconfiguration
+TAG: jeppebayer:EcoGenetics,genome_assembly_and_annotation,repeatmasking:workflowconfiguration
 # The name of the relevant project account.
 account: EcoGenetics
 # Name of species being analyzed
 species_name: Enchytraeus albidus
 # Alternative name of created folder (To be used if something deviating from the automatically generated name is desired)
-alternative_folder_name:
-# Genome assembly files to be masked
+alternative_folder_name: 
+# Genome assembly file to be masked.
 genome_assembly: /faststorage/project/EcoGenetics/BACKUP/Enchytraeus_albidus/reference_genome/Enchytraeus_albidus/EncAlb_19032024_genomic.fna
-# Repetitive region database file:
-repeat_database: 
-# Directory for intermediary files.
+# Settings for repeatmasking.
+repeatmasking_settings:
+  # (int) Do repeatmasking using database (0), RepeatModeler (1) or both (2)
+  mode: 1
+  # (str) Name to identify database used. If mode 1 this field can be left blank.
+  database_name: 
+  # (str) Repetitive region database file. If mode 1 this field can be left blank.
+  repeat_database: 
+# (str) Directory for intermediary files.
 working_directory_path: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps
-# Directory for final output files.
-output_directory_path: /faststorage/project/EcoGenetics/people/Jeppe_Bayer/enchytraeus_albidus/steps
+# (str) Directory for final output files. (If left empty, output file will be placed within 'working_directory_path').
+output_directory_path: 
