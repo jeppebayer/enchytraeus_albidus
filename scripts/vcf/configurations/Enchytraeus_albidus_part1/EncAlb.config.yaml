@@ -20,7 +20,7 @@ freebayes_settings:
   best_n_alleles: 3
   min_alternate_fraction: 0
   min_alternate_count: 2
-  memory: 80
+  memory: 110
   time: '96:00:00'
 # Filtering depths, limits included.
 filtering:

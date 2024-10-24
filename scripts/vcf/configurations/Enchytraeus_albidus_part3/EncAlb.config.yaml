@@ -21,7 +21,7 @@ freebayes_settings:
   min_alternate_fraction: 0
   min_alternate_count: 2
   memory: 90
-  time: '48:00:00'
+  time: '96:00:00'
 # Filtering depths, limits included.
 filtering:
   minimum_depth: 300
