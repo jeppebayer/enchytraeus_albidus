@@ -348,7 +348,7 @@ def depth_distribution_plot(depth_distribution_file: str, min_coverage_threshold
 			   'tsv': f'{depth_distribution_file}.tsv'}
 	options = {
 		'cores': 1,
-		'memory': '400g',
+		'memory': '600g',
 		'walltime': '04:00:00'
 	}
 	spec = f"""

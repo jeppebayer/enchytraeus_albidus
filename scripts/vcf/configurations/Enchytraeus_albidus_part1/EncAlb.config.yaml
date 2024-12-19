@@ -29,7 +29,7 @@ filtering:
 # 1 = Separate VCF files for each sample/BAM file. 2 = One VCF file per sample group. 3 = One VCF containing data for all samples/BAM files. 4 = Both.
 mode: 3
 # Split total workflow jobs into a number of partitions.
-number_of_splits: 3
+number_of_splits: 1
 # Partition to run.
 job_partition: 1
 # Sample setup. List of dictionaries listing the configuration for each sample.
