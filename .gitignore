@@ -1,5 +1,6 @@
 steps/
 logs/
 data/
+test_data/
 __pycache__/
 .gwf/
